@@ -19,3 +19,67 @@ URL没有空白，最多有70个字符。任何时候，在每个栈中都不会
 （4）VISIT：将当前页面放入后向栈的顶部，并使URL成为新的当前页面。前向栈清空。输出当前页面。
 （5）QUIT：退出浏览器。
 */
+
+#include <iostream>
+#include <stack>
+using namespace std;
+
+int main(void)
+{
+    stack<string>backward;
+    stack<string>forward;
+    string c;
+    string cur = "http://www.acm.com";
+    while (cin >> c && c != "QUIT") {
+        if (c == "VISIT") {
+            backward.push(cur);
+            cin >> cur;
+            cout << cur << endl;
+            while (!forward.empty()) {
+                forward.pop();
+            }
+        }
+        else if (c == "BACK") {
+            if (backward.empty()) {
+                cout << "Ignored" << endl;
+            }
+            else {
+                forward.push(cur);
+                cur = backward.top();
+                backward.pop();
+                cout << cur << endl;
+            }
+        }
+        else {
+            if (forward.empty()) {
+                cout << "Ignored" << endl;
+            }
+            else {
+                backward.push(cur);
+                cur = forward.top();
+                forward.pop();
+                cout << cur << endl;
+            }
+        }
+    }
+
+    return 0;
+}
+
+/*
+测试用例              输出样例
+VISIT pornhub           pornhub
+VISIT Xvideo            Xvideo
+BACK                    pornhub
+BACK                    http://www.acm.com
+BACK                    Ignored
+FORWARD                 pornhub
+VISIT 91porn            91porn
+BACK                    pornhub
+BACK                    http://www.acm.com
+FORWARD                 pornhub
+FORWARD                 91porn
+FORWARD                 Ignored
+QUIT
+
+*/
