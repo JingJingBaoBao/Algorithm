@@ -9,7 +9,7 @@ int q[N];
 
 // 快速排序
 // l, r 是两端点，i, j 是两指针
-void quick_sort(int q[], int l, int r) {
+void quickSort(int q[], int l, int r) {
     // 递归结束条件
     if (l >= r) return;
 
@@ -25,8 +25,8 @@ void quick_sort(int q[], int l, int r) {
     }
 
     // 3.递归处理左右两端
-    quick_sort(q, l, j);
-    quick_sort(q, j + 1, r);
+    quickSort(q, l, j);
+    quickSort(q, j + 1, r);
 }
 
 int main() {
@@ -34,7 +34,7 @@ int main() {
 
     for (int i = 0; i < n; i++) scanf("%d ", &q[i]);
 
-    quick_sort(q, 0, n - 1);
+    quickSort(q, 0, n - 1);
 
     for (int j = 0; j < n; j++) printf("%d ", q[j]);
 

@@ -7,7 +7,7 @@ int n;
 int q[N], tmp[N];
 
 // 归并排序
-void merge_sort(int q[], int l, int r) {
+void mergeSort(int q[], int l, int r) {
     // 递归结束条件：只有 0 或 1 个元素
     if (l >= r) return ;
 	
@@ -15,7 +15,7 @@ void merge_sort(int q[], int l, int r) {
     int mid = l + r >> 1;
 
     // 2.递归处理子问题
-    merge_sort(q, l, mid), merge_sort(q, mid + 1, r);
+    mergeSort(q, l, mid), mergeSort(q, mid + 1, r);
 
     // 定义 i j 双指针
     int k = 0, i = l, j = mid + 1;
@@ -40,7 +40,7 @@ int main() {
 
     for (int i = 0; i < n; i ++ ) scanf("%d ", &q[i]);
 
-    merge_sort(q, 0, n - 1);
+    mergeSort(q, 0, n - 1);
 
     for (int j = 0; j < n; j ++ ) printf("%d ", q[j]);
 
