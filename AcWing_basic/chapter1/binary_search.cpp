@@ -4,41 +4,45 @@ using namespace std;
 
 const int N = 100010;
 
-int n, m, q[N];
+int n, m;
+int q[N];
 
-int main()
+int main() 
 {
     scanf("%d %d", &n, &m);
-
-    for (int i = 0; i < n; i ++ ) scanf("%d ", &q[i]);
-
-    while (m -- ) {
+    
+    for (int i = 0; i < n; i ++) scanf("%d ", &q[i]);
+    
+    while (m -- )
+    {
         int k;
         scanf("%d", &k);
-
-        int l = -1, r = n;
-        
-        while (l + 1 != r) {
+        int l = -1, r = n;  // 双指针
+        while (l + 1 != r)  // l 和 r 相邻结束循环
+        {
             int mid = l + r >> 1;
+            // 第一个 >= 的下标
             if (q[mid] >= k) r = mid;
             else l = mid;
         }
-
+        
         if (q[r] != k) printf("-1 -1\n");
-        else {
+        else 
+        {
             printf("%d ", r);
             int ll = -1, rr = n;
-            int mid = ll + rr >> 1;
-
-            while (ll + 1 != rr) {
+            while (ll + 1 != rr)
+            {
                 int mid = ll + rr >> 1;
+                // 第二个 <= 的下标
                 if (q[mid] <= k) ll = mid;
                 else rr = mid;
             }
             if (q[ll] != k) printf("%d\n", r);
             else printf("%d\n", ll);
         }
-
+        
     }
+    
     return 0;
 }
