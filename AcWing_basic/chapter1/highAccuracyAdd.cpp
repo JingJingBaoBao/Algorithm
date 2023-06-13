@@ -3,8 +3,6 @@
 
 using namespace std;
 
-const int N = 1e6 + 10;
-
 vector<int> highAccuracyAdd(vector<int> &A, vector<int> &B){
     vector<int> C;
 
