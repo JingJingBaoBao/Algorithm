@@ -8,10 +8,10 @@ typedef pair<int, int> PII;
 
 const int N = 300010;  // n 次插入和 m 次查询相关数据量的上界
 
-int a[N], s[N];  // a -- 存储需要插入的值，s -- 求前缀和
+int a[N], s[N];  // a -- 存储需要插入的值，s -- 前缀和
 int n, m;  // n 次插入，m 次查询
 vector<PII> add, query;
-vector<int> alls;  //存储（所有与插入和查询有关的）坐标
+vector<int> alls;  // 存储（所有与插入和查询有关的）坐标
 
 // 返回输入坐标的离散化下标
 int find(int x)
@@ -39,7 +39,7 @@ int main()
     }
     
     // 选定区间
-    for (int i = 0; i < m; i ++ ) // m 次查询
+    for (int i = 0; i < m; i ++ )  // m 次查询
     {
         int l, r;
         cin >> l >> r;
@@ -47,8 +47,8 @@ int main()
 
         alls.push_back(l), alls.push_back(r);
     }
-    // alls 里即存放了，插入的位置，也存放了查询的位置？再去重？
-    // 去重
+
+    // 去重，插入和查询操作不在该容器中，它只是存储了离散化后的下标
     sort(alls.begin(), alls.end());
     alls.erase(unique(alls.begin(), alls.end()), alls.end());
 
@@ -60,7 +60,7 @@ int main()
     }
     
     // 前缀和
-    for (int i = 1; i <= alls.size(); i ++ ) s[i] = s[i - 1] + a[i];  // 没看懂
+    for (int i = 1; i <= alls.size(); i ++ ) s[i] = s[i - 1] + a[i];
     
     // 处理 m 次询问
     for (auto item : query)
